@@ -1,0 +1,9 @@
+{
+  "phase": "diagnostic",
+  "scenario": "null",
+  "n": 480,
+  "first": 625,
+  "count": 25,
+  "sha256": "41b13677b1dfa49f612fa1016adb7e4fed1b99259b954275690513e04d89dc1b",
+  "seconds_per_cohort": 0.330193292000331
+}

@@ -1,0 +1,6 @@
+{
+  "reason": "Windows spawned workers resolved the project run.py rather than the investigation run.py. Explicitly prioritise the investigation source directory.",
+  "existing_additional_cohorts": 0,
+  "statistical_methods_unchanged": true,
+  "seed_design_unchanged": true
+}

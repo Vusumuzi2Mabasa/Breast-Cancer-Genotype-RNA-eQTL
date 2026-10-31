@@ -63,8 +63,8 @@ execute:
 
 '''
     qmd=ROOT/'report/manuscript.qmd';qmd.write_text(header+content,encoding='utf-8')
-    subprocess.run([args.quarto,'render',qmd.name,'--to','docx','--output','Genotype_RNA_eQTL_Report.docx'],cwd=qmd.parent,check=True)
-    out=ROOT/'report/Genotype_RNA_eQTL_Report.docx';d=Document(out)
+    subprocess.run([args.quarto,'render',qmd.name,'--to','docx','--output','Genotype_RNA_eQTL_Calibration_Report.docx'],cwd=qmd.parent,check=True)
+    out=ROOT/'report/Genotype_RNA_eQTL_Calibration_Report.docx';d=Document(out)
     d.core_properties.author='Vusumuzi Mabasa'
     for st in d.styles:
         if st.type==1:st.font.color.rgb=RGBColor(0,0,0)

@@ -1,0 +1,1 @@
+Preserved from commit 24e43b0a235e266d2f8814478a608b1c4fdfc344 before the calibration manuscript update. Original numerical records remain in place and are checked by provenance/original_numerical_sha256.json. These document snapshots retain the earlier interpretation.

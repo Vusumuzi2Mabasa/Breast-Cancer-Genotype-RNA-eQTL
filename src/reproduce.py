@@ -14,6 +14,13 @@ def main():
     for name in ['src','tests','protocol','provenance']:shutil.copytree(BASE/name,target/name,ignore=shutil.ignore_patterns('__pycache__'))
     for name in ['requirements.txt','requirements-lock.txt','LICENSE']:shutil.copy2(BASE/name,target/name)
     for name in ['work','results','figures','report','data/example']:(target/name).mkdir(parents=True,exist_ok=True)
+    investigation=target/'investigations/eqtl_error'
+    investigation.mkdir(parents=True)
+    shutil.copytree(BASE/'investigations/eqtl_error/src',investigation/'src',ignore=shutil.ignore_patterns('__pycache__'))
+    for name in ['results','figures']:(investigation/name).mkdir()
+    for name in ['protocol.json','source_lock.json','conditional_null_amendment.json']:
+        shutil.copy2(BASE/'investigations/eqtl_error'/name,investigation/name)
+    shutil.copy2(BASE/'report/Genotype_RNA_eQTL_Report.docx',target/'report/Genotype_RNA_eQTL_Report.docx')
     env=os.environ.copy()
     for key in ['OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS']:env[key]='1'
     def run(cmd):subprocess.run(cmd,cwd=target,env=env,check=True)
@@ -23,7 +30,14 @@ def main():
     run([sys.executable,'src/replay_integration.py'])
     run([sys.executable,'src/analysis.py']);run([a.rscript,'--vanilla','src/check_R.R','.'])
     run([sys.executable,'src/robustness.py']);run([a.rscript,'--vanilla','src/check_HC3.R','.'])
-    for name in ['complementary','figures','manuscript']:run([sys.executable,f'src/{name}.py'])
+    for name in ['complementary','figures']:run([sys.executable,f'src/{name}.py'])
+    run([sys.executable,'investigations/eqtl_error/src/verify.py'])
+    run([a.rscript,'--vanilla','investigations/eqtl_error/src/check_R.R','.'])
+    for phase in ['diagnostic','validation']:
+        run([sys.executable,'investigations/eqtl_error/src/run.py','--phase',phase,'--workers',str(a.workers)])
+    for name in ['conditional_null','summarise','report']:
+        run([sys.executable,f'investigations/eqtl_error/src/{name}.py'])
+    for name in ['calibration_artifacts','manuscript']:run([sys.executable,f'src/{name}.py'])
     run([sys.executable,'src/build_word.py','--quarto',a.quarto]);run([sys.executable,'src/audit.py','--fresh'])
     print('Fresh scientific reproduction complete:',target)
 

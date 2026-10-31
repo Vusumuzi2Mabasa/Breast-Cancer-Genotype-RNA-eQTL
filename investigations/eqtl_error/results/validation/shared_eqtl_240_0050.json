@@ -1,0 +1,9 @@
+{
+  "phase": "validation",
+  "scenario": "shared_eqtl",
+  "n": 240,
+  "first": 50,
+  "count": 25,
+  "sha256": "8b71e6824df3382f4a1d3ba31ce6f17ce14b52525eedf367fb0bc4f0c875271a",
+  "seconds_per_cohort": 0.23683068000013008
+}

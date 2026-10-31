@@ -1,0 +1,1 @@
+Final integrity scan detected a CRC read error in results/pilot_fixtures.json. The unreadable file was preserved at work/eqtl_error/pilot_fixtures_unreadable.json. Fixed-seed Python pilot checks and independent R checks were regenerated and passed; the full 10400-cohort audit passed again. No statistical method, seed bank or original published result was changed.

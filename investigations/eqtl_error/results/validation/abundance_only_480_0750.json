@@ -1,0 +1,9 @@
+{
+  "phase": "validation",
+  "scenario": "abundance_only",
+  "n": 480,
+  "first": 750,
+  "count": 25,
+  "sha256": "b6d22fbc8d558876eee9b545378c5b50a036ad34a53d5b5a404a4f128b57401b",
+  "seconds_per_cohort": 0.4009823200001847
+}

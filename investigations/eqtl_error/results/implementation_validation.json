@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "generator_equivalence_cohorts": 3,
+  "maximum_original_p_discrepancy": 3.0753177782116836e-14,
+  "naive_bootstrap_refits": 93,
+  "maximum_bootstrap_F_discrepancy": 2.7533531010703882e-14,
+  "wild_seconds_per_cohort": [
+    0.055560900014825165,
+    0.0734156999969855,
+    0.06693669999367557
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "question": "Is the elevated eQTL false-discovery rate reproducible, and which assumptions or reference distributions explain it?",
+  "disclosure": "All cohorts are synthetic. Existing published results and scientific sources remain unchanged.",
+  "diagnostic_bank": {
+    "scenarios": ["null", "abundance_only"],
+    "sample_sizes": [240, 480],
+    "replicates_per_cell": 1000,
+    "seed_base": 1803000000,
+    "responses": ["Observed log2 CPM plus one", "Exact latent Gaussian log2 abundance", "Log2 CPM without the plus-one offset"],
+    "tests": ["Ordinary nested F", "HC3 Wald F"],
+    "purpose": "Paired response ablations on exactly the same generated cohorts. The latent response is an oracle diagnostic unavailable in real data."
+  },
+  "validation_bank": {
+    "null_scenarios": ["null", "abundance_only"],
+    "sample_sizes": [240, 480],
+    "null_replicates_per_cell": 1000,
+    "power_scenarios": ["shared_eqtl", "subtype_eqtl"],
+    "power_replicates_per_cell": 100,
+    "seed_base": 1903000000,
+    "tests": ["Ordinary nested F", "HC3 Wald F", "Restricted HC2 wild bootstrap F"],
+    "wild_draws": 999,
+    "wild_distribution": "Independent participant-level Rademacher multipliers shared across genes and hypotheses in a cohort",
+    "p_value": "(1 + bootstrap statistics at least as large as the observed statistic)/(999 + 1)",
+    "purpose": "Independent size and strong-signal power validation. No cutoff is tuned from this bank. Wild bootstrap inference remains approximate."
+  },
+  "families": ["Twelve gene-level omnibus cis tests", "Twelve gene-level genotype-by-subtype interaction tests"],
+  "multiplicity": "BH 0.05 applied separately to each family, as in the original study. No joint guarantee across families.",
+  "multiplicity_diagnostics": "Also report marginal nominal rejection, Bonferroni family rejection and BY family rejection on the same P values. These distinguish marginal P-value calibration from family adjustment; they are not outcome-tuned cutoffs.",
+  "diagnostics": ["Exact original-statistic replay", "Instrumented-generator equivalence", "Leverage", "Condition number", "Design rank", "Subtype residual variance ratio", "Residual skewness and kurtosis", "Nominal P-value tail frequencies", "Cohort-level false discoveries and Monte Carlo uncertainty"],
+  "reporting": "Wilson 95 percent intervals for all-null cohort rejection, mean FDP and simulation standard errors for partial alternatives. Report all specified cells; do not discard unfavourable seeds or retune thresholds.",
+  "policy": "Lock source hashes before fresh evaluation. Preserve old results. Any algorithmic correction must be recorded and affected new runs repeated. Existing small-bank tests are post hoc, and multiple-cell selection must be considered."
+}

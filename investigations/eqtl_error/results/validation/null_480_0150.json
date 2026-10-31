@@ -1,0 +1,9 @@
+{
+  "phase": "validation",
+  "scenario": "null",
+  "n": 480,
+  "first": 150,
+  "count": 25,
+  "sha256": "9fc8664f886e418d73398ba6f56acd530efdc8858272599289432c356600725b",
+  "seconds_per_cohort": 0.35466410399996673
+}

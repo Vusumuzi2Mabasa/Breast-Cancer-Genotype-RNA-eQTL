@@ -281,6 +281,8 @@ Existing records are resumed. Fresh generation requires a new output directory; 
 All observations and genomic annotations in this study are synthetic. No patient records, private proposal documents or controlled-access data are included. The standalone study is available in [Breast Cancer Genotype RNA eQTL](https://github.com/Vusumuzi2Mabasa/Breast-Cancer-Genotype-RNA-eQTL) under the MIT licence. The [original repository](https://github.com/Vusumuzi2Mabasa/Breast-Multiomics-Copula-MOFA/tree/f3a2041) remains preserved.
 '''
     text=text.replace('The score and loading plots show',f'The upper factor budget of six was selected in {boundary} of 80 fits. This boundary selection limits conclusions about an adequate factor dimension; larger budgets were not evaluated in this reframing. The score and loading plots show')
+    from calibration_paper import augment
+    text=augment(text)
     (ROOT/'README.md').write_text(text,encoding='utf-8',newline='\n')
     print('Three complementary analyses research manuscript generated')
 

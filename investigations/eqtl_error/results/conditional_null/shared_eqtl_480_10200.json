@@ -1,0 +1,9 @@
+{
+  "phase": "conditional_null",
+  "scenario": "shared_eqtl",
+  "n": 480,
+  "first": 10200,
+  "count": 25,
+  "sha256": "8d6aa57352f00193857bf34193b12ecdf625a42ca62c2ea3bbd4d08a327a118b",
+  "seconds_per_cohort": 0.24281016399967484
+}

@@ -136,8 +136,10 @@ results/eqtl_summary.csv: gene detection and realised FDP.
 results/robustness_summary.csv: preserved F and HC3 checks and fresh null cohorts.
 results/example_eqtl.csv: all twelve example genes, including non-significant results.
 data/example/: the prespecified 240-case example, metadata, maps and simulation truth.
-figures/: eight main figures in PNG/SVG.
-report/Genotype_RNA_eQTL_Report.docx and manuscript.qmd: research report and source.
+figures/: thirteen main figures in PNG/SVG, including five calibration figures.
+report/Genotype_RNA_eQTL_Calibration_Report.docx: updated research report.
+report/Genotype_RNA_eQTL_Report.docx: preserved original research report.
+report/manuscript.qmd: updated Quarto source.
 README.md: shared research manuscript, with interpretation before figures.
 provenance/: source commit, numerical hashes, original locks and original source copies.
 
@@ -150,7 +152,30 @@ integration replay and eight eQTL replays remain released. No models were refitt
 new summaries. Report pages are rendered and visually inspected before delivery.
 The default release audit is read-only, so CI does not alter preserved JSON line endings.
 
-12. PUBLICATION
+12. ADDITIONAL eQTL CALIBRATION
+The completed investigation adds 10400 fresh synthetic cohorts in three disjoint banks.
+Original numerical outputs and the original Word report remain unchanged. See
+investigations/eqtl_error/Investigation.txt for all rates, limitations and seed design.
+To resume or regenerate the additional banks in a separate reproduction directory:
+
+python investigations/eqtl_error/src/verify.py
+Rscript --vanilla investigations/eqtl_error/src/check_R.R .
+python investigations/eqtl_error/src/run.py --phase diagnostic --workers 2
+python investigations/eqtl_error/src/run.py --phase validation --workers 2
+python investigations/eqtl_error/src/conditional_null.py
+python investigations/eqtl_error/src/summarise.py
+python investigations/eqtl_error/src/report.py
+python src/calibration_artifacts.py
+python src/manuscript.py
+python src/build_word.py
+
+The new-directory wrapper src/reproduce.py now includes these additional banks.
+The conditional-null driver uses two workers. Record hashes after new generation;
+do not overwrite release manifests to conceal unexplained changes in existing records.
+The original report, README and QA records are archived under
+provenance/before_calibration_update from commit 24e43b0.
+
+13. PUBLICATION
 After numerical validation, Word visual QA and integrity manifest generation:
 git add .
 git commit -m "Organise simulated breast cancer study as complementary analyses"

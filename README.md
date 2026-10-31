@@ -4,12 +4,12 @@
 
 **Simulation study.** All participants, genomic positions, LD, gene identifiers, RNA counts and TNBC labels are synthetic. The two molecular layers are germline genotype and RNA. No real patient material, breast cancer eQTL discoveries, protein or somatic assay layer is included. This is an illustrative design for Study 3, not a clinical or causal validation study.
 
-[Word report](report/Genotype_RNA_eQTL_Report.docx) · [Quarto manuscript](report/manuscript.qmd) · [Example dataset](data/example) · [Analysis plan](protocol/complementary_analysis.json) · [Workflow](workflow.txt) · [Numerical provenance](provenance/packaging.json)
+[Updated Word report](report/Genotype_RNA_eQTL_Calibration_Report.docx) · [Original Word report](report/Genotype_RNA_eQTL_Report.docx) · [Quarto manuscript](report/manuscript.qmd) · [Example dataset](data/example) · [Analysis plan](protocol/complementary_analysis.json) · [Workflow](workflow.txt) · [Numerical provenance](provenance/packaging.json)
 
 <!-- manuscript -->
 ## Abstract
 
-We organised genotype and RNA analyses of simulated breast cancer cases around three complementary questions. MOFA+ described unsupervised molecular variation; DIABLO evaluated supervised TNBC versus non-TNBC signatures; and cis-eQTL models tested local genotype–expression associations and subtype interactions. The preserved simulation comprised 1,600 eQTL cohorts, 80 independent training/test pairs and 800 additional fresh negative-control cohorts at training sizes of 240 and 480. New post hoc summaries describe existing MOFA representations and DIABLO feature-selection reproducibility without refitting or changing the underlying simulations. In the subtype-eQTL scenario at N = 480, DIABLO balanced accuracy was 0.940, compared with 0.961 for a combined ridge reference and 0.957 for RNA ridge. These predictive results do not rank MOFA as a discovery method. The eQTL negative controls showed error excesses for ordinary F and HC3 references in some cells. The workflow illustrates how the three analyses can inform different aspects of Study 3 while retaining uncertainty, simple baselines and the need for further calibration and independent biological validation.
+We organised genotype and RNA analyses of simulated breast cancer cases around three complementary questions. MOFA+ described unsupervised molecular variation; DIABLO evaluated supervised TNBC versus non-TNBC signatures; and cis-eQTL models tested local genotype–expression associations and subtype interactions. The preserved simulation comprised 1,600 eQTL cohorts, 80 independent training/test pairs and 800 additional fresh negative-control cohorts at training sizes of 240 and 480. New post hoc summaries describe existing MOFA representations and DIABLO feature-selection reproducibility without refitting or changing the underlying simulations. In the subtype-eQTL scenario at N = 480, DIABLO balanced accuracy was 0.940, compared with 0.961 for a combined ridge reference and 0.957 for RNA ridge. These predictive results do not rank MOFA as a discovery method. Historical eQTL negative controls showed error excesses in some cells. An additional 10,400-cohort investigation did not reproduce the original 11% ordinary-F rate as a persistent excess: the corresponding fresh estimate was 4.25% (95% interval 3.45–5.23%). HC3 remained elevated under Gaussian oracle controls; restricted wild-bootstrap checks were closer to nominal error, with limitations. The workflow illustrates how the three analyses can inform different aspects of Study 3 while retaining uncertainty, simple baselines and the need for further calibration and independent biological validation.
 
 ## Introduction
 
@@ -197,6 +197,37 @@ Predictive means and approximate 95% Monte Carlo intervals use ten independent r
 
 The original six model unit tests, complete integration replay, eight eQTL cohort replays, independent R test-statistic checks and probability/voted-class metric checks are retained. New validation checks orthonormal-subspace capture, fixed-model reconstruction arithmetic and the separation of discovery and supervised endpoints. The preservation manifest verifies all original fitted-model and eQTL records. Document pages are rendered and visually reviewed before publication.
 
+### Independent investigation of eQTL calibration
+
+Following the elevated historical negative-control rates, we generated 10,400 additional synthetic cohorts with seed banks disjoint from the original experiments. This investigation was motivated by the observed error excess; its historical comparisons are post hoc. The diagnostic and validation protocols and source hashes were frozen before their fresh evaluations. The extra conditional-null bank was specified after an imprecise 100-cohort interaction check and documented in an amendment before generating its 2,000 new cohorts. No threshold was selected to obtain a favourable result, and no original fitted result was replaced.
+
+The diagnostic bank comprised 4,000 cohorts: 1,000 for each combination of the null or abundance-only scenario and N = 240 or 480. Ordinary F and HC3 tests were evaluated on the same cohorts using observed log2(CPM + 1), exact latent Gaussian log2 abundance and log2(CPM) without the offset. The latent response is an oracle available only because these data are simulated. Counts were positive in this panel; the no-offset diagnostic is not a recommendation for real low-count RNA.
+
+The independent validation bank contained 4,000 no-genetic-effect cohorts plus 400 strong-signal cohorts. It evaluated both original tests and a restricted wild-bootstrap F candidate [7]. For each gene and hypothesis, the reduced-model fitted response and residuals defined
+
+$$
+Y_i^{*(b)}=\widehat{Y}_{0i}+\frac{\widehat{e}_{0i}}{\sqrt{1-h_{0ii}}}w_i^{(b)},\qquad
+\Pr(w_i^{(b)}=1)=\Pr(w_i^{(b)}=-1)=\tfrac12.
+$$
+
+Here h is the reduced-model leverage; HC2 denotes the residual adjustment, not the HC3 covariance test. We refitted reduced and full models to each bootstrap response and compared their ordinary F statistic with the observed statistic. The same participant multipliers were shared across genes and hypotheses within each cohort. With B = 999 draws, the Monte Carlo P value was
+
+$$
+\widehat p=\frac{1+\sum_{b=1}^{B}I(F^{*(b)}\ge F_{\mathrm{obs}})}{B+1}.
+$$
+
+BH adjustment at 0.05 was applied separately to the twelve omnibus tests and twelve interaction tests. There is no joint error guarantee across the two families. In a wholly null family, the false discovery proportion is one whenever any gene is selected and zero otherwise; consequently its expectation equals the probability of at least one false discovery. For R independent cohorts, we estimated this probability by
+
+$$
+\widehat\pi_0=R^{-1}\sum_{r=1}^{R}I(V_r>0),
+$$
+
+where V is the number of false genes in a cohort. We report Wilson 95% intervals. Under partial alternatives we instead report mean FDP and sensitivity, because the probability of any false discovery is no longer the FDR. Intervals are cell-specific Monte Carlo intervals, not simultaneous guarantees.
+
+The amended bank comprised 1,000 further shared-eQTL cohorts per sample size: common genotype effects were present but every subtype interaction was null. These cohorts assess interaction calibration in the presence of main genetic effects. Together, the three fresh banks comprise 10,400 cohorts; pooled ordinary-F and HC3 confirmation uses only the two fresh no-genetic-effect banks, giving 2,000 cohorts per scenario and size. The bootstrap estimates use the independent validation bank, not this pooled denominator.
+
+Generator equivalence was checked against the original arrays and scalars. Original P values agreed within 3.1 × 10⁻¹⁴; 93 explicit bootstrap refits agreed within 2.8 × 10⁻¹⁴, and an independent R implementation agreed within 3.1 × 10⁻¹⁴. Bonferroni and BY adjustments, marginal P-value tails, leverage and condition numbers were retained as diagnostics. Arithmetic agreement alone does not establish statistical calibration.
+
 ## Results
 
 ### Analysis 1 Molecular representations and programme diagnostics
@@ -310,6 +341,58 @@ Table 6. Original ordinary-F BH-adjusted P values and known simulation truth in 
 
 Figure 8. Omnibus and interaction q values for all twelve example genes; asterisks mark q below 0.05 within each separately adjusted family. Negative log10 q colours are capped at 15. This statistical map does not establish causal regulation.
 
+### Independent eQTL error rate investigation
+
+The original 11% abundance-only omnibus error rate at N = 480 was not reproduced as a persistent rate. Across 2,000 fresh cohorts in that setting, ordinary F rejected at least one null gene in 85 cohorts, or 4.25% (95% interval 3.45–5.23%). The historical result remains 22/200, or 11% (7.4–16.1%); it is retained in Table 5 and Figure 6. The new evidence is consistent with an unusually high small-bank outcome, but does not prove that every original excess was due to chance or certify the model for real RNA.
+
+Table 7. Omnibus probability of selecting any false gene after BH, with Wilson 95% intervals. Every cell uses 2,000 fresh cohorts pooled across the diagnostic and independent validation banks. All genes are null for genetic effects in these scenarios.
+
+| Scenario | N | Ordinary F | HC3 Wald F |
+| --- | --- | --- | --- |
+| Null | 240 | 5.60% (4.67–6.70) | 8.55% (7.40–9.86) |
+| Null | 480 | 4.55% (3.72–5.55) | 7.10% (6.05–8.31) |
+| Abundance only | 240 | 4.65% (3.81–5.66) | 7.45% (6.38–8.68) |
+| Abundance only | 480 | 4.25% (3.45–5.23) | 6.10% (5.13–7.24) |
+
+On the independent validation bank, ordinary-F estimates were broadly near the target whereas HC3 omnibus estimates remained elevated in several settings. The restricted wild bootstrap produced rates from 3.7% to 6.1% across the eight no-genetic-effect scenario, size and hypothesis cells. Every corresponding Wilson interval included 5%; this is compatibility with the target under this generator, not proof of exact control.
+
+![Independent validation of eQTL error rates](figures/calibration_independent_validation.png)
+
+Figure 9. Independent validation bank, with 1,000 fresh cohorts per null or abundance-only scenario and size. Intervals are cell-specific Wilson 95% intervals. These denominators differ from the pooled 2,000-cohort estimates in Table 7. All observations are simulated.
+
+The paired oracle diagnostic separated response transformation from test-reference behaviour. For the Gaussian null at N = 240, ordinary-F omnibus rejection was 5.0%, whereas HC3 rejection was 8.5%. Their paired difference was 3.5 percentage points (approximate 95% interval 1.9–5.1). Observed-response versus oracle ordinary-F rejection differed by only 0.4 points (−1.4 to 2.2). Count transformation was therefore not the dominant detected explanation in this setting. Excess HC3 rejection under the Gaussian control supports a finite-sample joint-Wald calibration problem rather than an arithmetic implementation discrepancy.
+
+![Paired oracle and observed response diagnostics](figures/calibration_paired_oracle_ablation.png)
+
+Figure 10. Response diagnostics at N = 240 using identical simulated cohorts across response transformations and methods. Points show probabilities of any false cis gene after BH, with cell-specific Wilson 95% intervals. The paired differences are reported in the text and accompanying tables. The latent Gaussian response is an oracle unavailable in a real study.
+
+HC3 excesses also appeared in the small marginal P-value tails and persisted under Bonferroni adjustment. This shows that the pattern cannot be explained solely by BH adjustment. The eight-coefficient omnibus test was more affected than the four-coefficient interaction test. Leverage and condition numbers were inspected, but these descriptive diagnostics do not identify a unique causal source of distortion.
+
+![Gaussian oracle P value tail calibration](figures/calibration_gaussian_pvalue_tails.png)
+
+Figure 11. Marginal P-value tail checks under the synthetic Gaussian null. Deviations concern the finite-sample test behaviour; they do not invalidate all heteroskedasticity-robust inference.
+
+The initial independent power bank contained only 100 cohorts per signal cell and yielded an imprecise 8/100 bootstrap interaction-error estimate for shared eQTLs at N = 480. We therefore generated the amended 2,000-cohort bank rather than treating that small estimate as conclusive. With main effects present and all interactions null, bootstrap interaction rejection was 4.4% at N = 240 and 4.6% at N = 480. The original 8/100 check remains in the released tables.
+
+Table 8. Interaction probability of any false gene after BH in the amended shared-eQTL bank, with Wilson 95% intervals; 1,000 new cohorts per size. Common genetic effects are present, but every interaction is null.
+
+| N | Ordinary F | HC3 Wald F | Restricted wild F |
+| --- | --- | --- | --- |
+| 240 | 6.00% (4.69–7.65) | 5.40% (4.16–6.98) | 4.40% (3.29–5.86) |
+| 480 | 4.70% (3.55–6.19) | 4.70% (3.55–6.19) | 4.60% (3.47–6.08) |
+
+![Interaction calibration with common genetic effects](figures/calibration_conditional_interaction_null.png)
+
+Figure 12. Conditional interaction-null validation on new synthetic cohorts, separate from both the no-genetic-effect banks and the 100-cohort power checks. Cell-specific intervals include the 5% target for all displayed methods and sizes.
+
+Strong planted signals were retained by the bootstrap candidate: mean omnibus sensitivity was 100% in the initial signal checks and subtype-interaction sensitivity was 98% at N = 240 and 100% at N = 480. These ceiling results do not establish power for weak effects, rare variants or a transcriptome-wide study. The shared-eQTL interaction family is null and is assessed for error rather than sensitivity.
+
+![Strong signal sensitivity checks](figures/calibration_strong_signal_power.png)
+
+Figure 13. Sensitivity on 100 independent synthetic cohorts per strong-signal scenario and size. Power estimates are conditional on the large planted effects; the investigation did not establish a weak-effect power advantage.
+
+The completed investigation, all specified cells and implementation checks are available in the [investigation report](investigations/eqtl_error/Investigation.txt), [complete calibration tables](investigations/eqtl_error/results/error_summary.csv), [pooled confirmation](investigations/eqtl_error/results/pooled_confirmation.csv) and [source and seed audit](investigations/eqtl_error/results/investigation_audit.json). Original numerical results were preserved byte for byte.
+
 ## Discussion
 
 The three analyses can inform different parts of Study 3 without competing for a single accuracy ranking. MOFA factors can generate hypotheses about molecular programmes and heterogeneity. DIABLO can test whether a supervised signature predicts subtype beyond simple references. eQTL models can identify candidate genotype–expression associations and possible subtype-dependent effects. A useful signature need not contain eQTL genes, and a shared eQTL need not distinguish subtypes.
@@ -318,13 +401,13 @@ The present discovery summaries are limited. MOFA is not guaranteed to recover w
 
 DIABLO benefited from strong planted RNA abundance differences, and simpler RNA and combined ridge references performed well. The subtype-eQTL scenario also changes abundance, so its prediction results do not isolate the contribution of genetic interactions. Signature selection frequency across ten synthetic cohorts is an initial reproducibility check, not evidence of a clinically stable panel.
 
-The eQTL analysis has a different weakness: some negative-control error rates exceed the nominal level. Robust covariance estimates do not solve every mean-model problem or finite-sample distortion. Further calibration, covariate sensitivity and larger fresh null banks are needed before confirmatory use. The small gene panel, common variants, synthetic LD and strong effects do not yield a definitive PhD power calculation.
+The larger calibration investigation changes the interpretation of the historical eQTL error excess. Ordinary F remains a reasonable baseline under this generator, because its original 11% rate was not persistent across the larger fresh banks. HC3 should not be treated as an automatic correction: its omnibus rejection remained excessive under an exact Gaussian control. Restricted wild bootstrap is a promising sensitivity analysis, including for interactions with common eQTL effects present, but its validity remains design-dependent. These results do not justify silently replacing historical discoveries or retrospectively recalibrating selected genes. Real-data and weak-effect validation, covariate sensitivity, relatedness, low counts and transcriptome-wide multiplicity remain unresolved. The small gene panel, common variants, synthetic LD and strong effects do not yield a definitive PhD power calculation.
 
 All measurements are blood-like and synthetic. Real Study 3 work must address ancestry, relatedness, genotype uncertainty, expression QC, cell-composition estimation, clinical timing, case selection and independent replication. Blood associations do not establish tumour origin. Genetic association does not establish a causal allele, RNA mediation or breast cancer susceptibility. Fine-mapping, colocalisation with real GWAS and causal mediation require their own data and assumptions; they were not performed here.
 
 ## Conclusion
 
-A genotype-and-RNA study can combine unsupervised molecular discovery, supervised subtype signatures and local genetic association mapping as complementary analyses. The current simulation illustrates that structure with preserved numerical results, purpose-specific figures and explicit limits. It does not define a MOFA+ versus DIABLO winner, identify real breast cancer eQTLs or provide a clinically validated biomarker.
+A genotype-and-RNA study can combine unsupervised molecular discovery, supervised subtype signatures and local genetic association mapping as complementary analyses. The current simulation illustrates that structure with preserved numerical results, purpose-specific figures and explicit limits. Independent calibration supports ordinary F as a simulation baseline and restricted wild bootstrap as a sensitivity analysis; it does not establish confirmatory eQTL validity for real patients. It does not define a MOFA+ versus DIABLO winner, identify real breast cancer eQTLs or provide a clinically validated biomarker.
 
 ## Reproducibility
 
@@ -353,6 +436,8 @@ python src/audit.py --fresh
 
 Existing records are resumed. Fresh generation requires a new output directory; see workflow.txt and the reproduction wrapper. Python dependencies are pinned. R with mixOmics and jsonlite and Quarto are required. Original source locks are archived alongside a documented packaging adjustment; no scientific model choices changed during relocation. Numerical audits pass independently of the scientific error-control limitations, which remain explicit.
 
+The new calibration investigation is reproduced separately using the commands in [its report](investigations/eqtl_error/Investigation.txt). Its seed locks, amended conditional-null design, raw records, figures and checksums are retained under investigations/eqtl_error. The original study and the subsequent calibration banks must not be conflated.
+
 ## References
 
 1. Argelaguet R, et al. MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data. Genome Biology. 2020;21:111. [Methods paper](https://doi.org/10.1186/s13059-020-02015-1).
@@ -361,6 +446,8 @@ Existing records are resumed. Fresh generation requires a new output directory; 
 4. mixOmics developers. [Official DIABLO documentation](https://mixomics.org/mixdiablo/).
 5. GTEx Consortium. The GTEx Consortium atlas of genetic regulatory effects across human tissues. Science. 2020;369:1318–1330. [Research article](https://pmc.ncbi.nlm.nih.gov/articles/PMC7737656/).
 6. EMBL-EBI. [eQTL Catalogue](https://www.ebi.ac.uk/eqtl/).
+
+7. Davidson R, Flachaire E. The wild bootstrap, tamed at last. Journal of Econometrics. 2008;146:162–169. [Methods paper](https://doi.org/10.1016/j.jeconom.2008.08.003).
 
 ## Data and code availability
 

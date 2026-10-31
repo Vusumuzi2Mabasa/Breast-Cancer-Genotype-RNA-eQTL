@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "pages": 14,
+  "author": "Vusumuzi Mabasa",
+  "figures": 8,
+  "tables": 6,
+  "table_rows": [
+    4,
+    5,
+    5,
+    9,
+    5,
+    13
+  ],
+  "editable_equations": 21,
+  "readme_sha256": "66b0653493a01683e7185b511eb2ae32efa8566226514bdc9c041cd7a94a75bb",
+  "word_sha256": "c467106da90cb516e6d13e487de54ecf7770c81e67afe153c6b8a26f40e8d5b9",
+  "page_sha256": {
+    "page-1.png": "157c311ee7acfb782dcd46e9d2d8a6d62dea8de7be2fc63c8e216e6c440e2c23",
+    "page-2.png": "c1b792d0be25e393a42412026702e4a9dab434ba0d7a26d04382c7a77dfe7738",
+    "page-3.png": "774b0228bb470921c55e81e9be9b63286c372829b7c5d9025e23e0962c08ec7c",
+    "page-4.png": "e1ff2da3025ebc984f7eda21bdffb8fae119f67159752dd3cc366ac61f79b119",
+    "page-5.png": "60e4dcb832c1faf7393dd1b8395b8b7f80726cad12c91bfa98c14936d21dd059",
+    "page-6.png": "26139240ec1485f334af22b5d136873c701642d4558971850e48b0444b6ee1d8",
+    "page-7.png": "81b813635b48517656ae112c336486f94f124207020fedf2a2dd140e8c97f572",
+    "page-8.png": "20c00cedb95f038f0d1387be8d918a43eb9940c12472a0754e00a4764e34e4e9",
+    "page-9.png": "5a428655a7f02ba2d81e7b07888ddec701879701c6dfa0326fd485d56a03be56",
+    "page-10.png": "8ada4481d3a37f700c738a5e26c3edc1908e685ffa59416516a9f1b0f6b37f2f",
+    "page-11.png": "823d1cb083bad95268e61483443ee457ef6e1bc957562334e4086c78202e1a59",
+    "page-12.png": "bad6143ccde0d46470dab3d69e57a5839148ee25f16edcb1f26d38d3e8224476",
+    "page-13.png": "78e7385fbd01b044a2e4b99d9732be8b7d84b926883576fd96eafc46c87d7314",
+    "page-14.png": "f276c39831826e1bf1bc81a87ef8218f1679f23bbb17cd61f903ca5d1fd2d5fa"
+  },
+  "visual_review": "All fourteen rendered pages and eight standalone figures visually inspected. Research structure separates discovery, supervised signatures and genetic association; simulations and limits explicit. Tables and editable equations readable without clipping or overlap."
+}

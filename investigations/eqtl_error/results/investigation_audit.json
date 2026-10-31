@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "fresh_diagnostic_cohorts": 4000,
+  "independent_validation_cohorts": 4400,
+  "conditional_interaction_null_cohorts": 2000,
+  "total_new_cohorts": 10400,
+  "summary_cells": 108,
+  "seed_banks_disjoint": true,
+  "source_locks_verified": true,
+  "historical_complete_null_cells": 36,
+  "previous_results_unchanged": true,
+  "limitations": "Intervals and exploratory paired contrasts are cell-specific, not simultaneous guarantees. Wild bootstrap validity remains model- and design-dependent."
+}

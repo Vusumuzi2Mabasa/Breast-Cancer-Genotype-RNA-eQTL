@@ -1,0 +1,12 @@
+{
+  "sha256": {
+    "protocol.json": "46667cfdf52ee5ace696e2b3a899f626c4fd21e1ab1b324ff72a78db814f6a1e",
+    "src/methods.py": "d0ad488189fa2fffdcc19483f2c5b6dbbb9da4e8b67349e955ad8c9bc4087f8d",
+    "src/run.py": "00fc733dc67dfb69dfa6d90991100114ff293e6823cf6cdf12ac63a560bf52f3"
+  },
+  "original_sources": {
+    "src/simulation.py": "df63d64409c32814eca6ebaf0b6eb3d3229bab2e3cee5989e3dcc899d404d739",
+    "src/eqtl.py": "e9d95b57a3604bbd80516da8c81cb00d2dc5670ed4208803adfb66c9932bc7f2",
+    "src/robustness.py": "702a9218ed8aeffbc9d117a4adcd16e5a524ac6cf92513d3a60a03d0b22b4fc1"
+  }
+}

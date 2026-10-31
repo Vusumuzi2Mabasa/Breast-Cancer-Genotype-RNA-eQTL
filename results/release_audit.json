@@ -8,9 +8,10 @@
   ],
   "original_eqtl_cohorts": 1600,
   "fresh_null_cohorts": 800,
+  "additional_calibration_cohorts": 10400,
   "training_test_pairs": 80,
   "MOFA_descriptive_fixtures": 8,
   "supervised_method_records": 400,
-  "figures": 8,
-  "eqtl_calibration": "Error excesses retained; further calibration required before confirmatory use."
+  "figures": 13,
+  "eqtl_calibration": "Original excesses retained; independent confirmation did not reproduce persistent 11% F error. HC3 oracle excess retained. Wild bootstrap is a sensitivity candidate, not real-data certification."
 }

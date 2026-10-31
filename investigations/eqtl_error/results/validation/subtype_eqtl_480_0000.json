@@ -1,0 +1,9 @@
+{
+  "phase": "validation",
+  "scenario": "subtype_eqtl",
+  "n": 480,
+  "first": 0,
+  "count": 25,
+  "sha256": "ff558f9470a946463bf1dac139491a3986a95deca69aae39db60bee33fc42063",
+  "seconds_per_cohort": 0.37371729599894027
+}

@@ -1,0 +1,97 @@
+phase,scenario,n,response,family,comparison,difference,lower,upper
+diagnostic,abundance_only,240,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.02,0.006470653999427648,0.03352934600057235
+diagnostic,abundance_only,240,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,0.003,-0.00955502505988157,0.015555025059881569
+diagnostic,abundance_only,240,Latent Gaussian,omnibus,HC3 Wald F minus Ordinary F,0.03,0.015982073539133463,0.04401792646086654
+diagnostic,abundance_only,240,Latent Gaussian,interaction,HC3 Wald F minus Ordinary F,0.012,0.000257670934099492,0.023742329065900507
+diagnostic,abundance_only,240,Log CPM without offset,omnibus,HC3 Wald F minus Ordinary F,0.02,0.006470653999427645,0.033529346000572356
+diagnostic,abundance_only,240,Log CPM without offset,interaction,HC3 Wald F minus Ordinary F,0.005,-0.007552574521871085,0.017552574521871086
+diagnostic,abundance_only,240,Observed minus Latent Gaussian,omnibus,Ordinary F,0.0,-0.015931082806871586,0.015931082806871586
+diagnostic,abundance_only,240,Observed minus Log CPM without offset,omnibus,Ordinary F,0.001,-0.0009600000000000003,0.0029600000000000004
+diagnostic,abundance_only,240,Observed minus Latent Gaussian,interaction,Ordinary F,0.007,-0.00805632274011335,0.022056322740113352
+diagnostic,abundance_only,240,Observed minus Log CPM without offset,interaction,Ordinary F,0.002,-0.0007704709182933338,0.004770470918293334
+diagnostic,abundance_only,240,Observed minus Latent Gaussian,omnibus,HC3 Wald F,-0.01,-0.029203599095435684,0.009203599095435685
+diagnostic,abundance_only,240,Observed minus Log CPM without offset,omnibus,HC3 Wald F,0.001,-0.0009600000000000003,0.0029600000000000004
+diagnostic,abundance_only,240,Observed minus Latent Gaussian,interaction,HC3 Wald F,-0.002,-0.018406273172155804,0.014406273172155802
+diagnostic,abundance_only,240,Observed minus Log CPM without offset,interaction,HC3 Wald F,0.0,0.0,0.0
+diagnostic,abundance_only,480,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.016,0.004276024479639937,0.027723975520360065
+diagnostic,abundance_only,480,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,-0.001,-0.012601152750703056,0.010601152750703058
+diagnostic,abundance_only,480,Latent Gaussian,omnibus,HC3 Wald F minus Ordinary F,0.009,-0.001904005123243832,0.01990400512324383
+diagnostic,abundance_only,480,Latent Gaussian,interaction,HC3 Wald F minus Ordinary F,-0.007,-0.016394510014812822,0.0023945100148128227
+diagnostic,abundance_only,480,Log CPM without offset,omnibus,HC3 Wald F minus Ordinary F,0.017,0.005118495560420487,0.028881504439579514
+diagnostic,abundance_only,480,Log CPM without offset,interaction,HC3 Wald F minus Ordinary F,0.0,-0.01176588441367822,0.01176588441367822
+diagnostic,abundance_only,480,Observed minus Latent Gaussian,omnibus,Ordinary F,-0.005,-0.021520608054502427,0.011520608054502425
+diagnostic,abundance_only,480,Observed minus Log CPM without offset,omnibus,Ordinary F,0.0,0.0,0.0
+diagnostic,abundance_only,480,Observed minus Latent Gaussian,interaction,Ordinary F,-0.002,-0.01931846884002633,0.01531846884002633
+diagnostic,abundance_only,480,Observed minus Log CPM without offset,interaction,Ordinary F,0.002,-0.0007704709182933338,0.004770470918293334
+diagnostic,abundance_only,480,Observed minus Latent Gaussian,omnibus,HC3 Wald F,0.002,-0.01531846884002633,0.01931846884002633
+diagnostic,abundance_only,480,Observed minus Log CPM without offset,omnibus,HC3 Wald F,-0.001,-0.00296,0.0009599999999999999
+diagnostic,abundance_only,480,Observed minus Latent Gaussian,interaction,HC3 Wald F,0.004,-0.012867170356519075,0.020867170356519076
+diagnostic,abundance_only,480,Observed minus Log CPM without offset,interaction,HC3 Wald F,0.001,-0.0009600000000000003,0.0029600000000000004
+diagnostic,null,240,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.028,0.01424291298846144,0.04175708701153856
+diagnostic,null,240,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,0.001,-0.010928018948510938,0.01292801894851094
+diagnostic,null,240,Latent Gaussian,omnibus,HC3 Wald F minus Ordinary F,0.035,0.019339754686363207,0.050660245313636804
+diagnostic,null,240,Latent Gaussian,interaction,HC3 Wald F minus Ordinary F,0.005,-0.006260708839303302,0.016260708839303303
+diagnostic,null,240,Log CPM without offset,omnibus,HC3 Wald F minus Ordinary F,0.032,0.017999091921342136,0.046000908078657865
+diagnostic,null,240,Log CPM without offset,interaction,HC3 Wald F minus Ordinary F,0.003,-0.00924490765025867,0.015244907650258672
+diagnostic,null,240,Observed minus Latent Gaussian,omnibus,Ordinary F,0.004,-0.013537790867395715,0.021537790867395715
+diagnostic,null,240,Observed minus Log CPM without offset,omnibus,Ordinary F,0.003,-0.00039141966252000853,0.006391419662520008
+diagnostic,null,240,Observed minus Latent Gaussian,interaction,Ordinary F,0.001,-0.014564678525996532,0.016564678525996534
+diagnostic,null,240,Observed minus Log CPM without offset,interaction,Ordinary F,0.002,-0.0019199999999999998,0.00592
+diagnostic,null,240,Observed minus Latent Gaussian,omnibus,HC3 Wald F,-0.003,-0.02402835269861187,0.01802835269861187
+diagnostic,null,240,Observed minus Log CPM without offset,omnibus,HC3 Wald F,-0.001,-0.00296,0.0009599999999999999
+diagnostic,null,240,Observed minus Latent Gaussian,interaction,HC3 Wald F,-0.003,-0.019522470082212813,0.013522470082212815
+diagnostic,null,240,Observed minus Log CPM without offset,interaction,HC3 Wald F,0.0,0.0,0.0
+diagnostic,null,480,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.023,0.01022033202647606,0.03577966797352394
+diagnostic,null,480,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,0.009,-0.0015454462606774907,0.019545446260677488
+diagnostic,null,480,Latent Gaussian,omnibus,HC3 Wald F minus Ordinary F,0.03,0.01518193889420971,0.044818061105790286
+diagnostic,null,480,Latent Gaussian,interaction,HC3 Wald F minus Ordinary F,0.007,-0.0005824306693074906,0.014582430669307492
+diagnostic,null,480,Log CPM without offset,omnibus,HC3 Wald F minus Ordinary F,0.023,0.010220332026476058,0.03577966797352394
+diagnostic,null,480,Log CPM without offset,interaction,HC3 Wald F minus Ordinary F,0.012,0.0016501822079648017,0.0223498177920352
+diagnostic,null,480,Observed minus Latent Gaussian,omnibus,Ordinary F,0.003,-0.012314619262755542,0.01831461926275554
+diagnostic,null,480,Observed minus Log CPM without offset,omnibus,Ordinary F,0.001,-0.0023959521331860514,0.0043959521331860514
+diagnostic,null,480,Observed minus Latent Gaussian,interaction,Ordinary F,0.003,-0.011541832432348076,0.017541832432348078
+diagnostic,null,480,Observed minus Log CPM without offset,interaction,Ordinary F,0.003,-0.00039141966252000896,0.006391419662520009
+diagnostic,null,480,Observed minus Latent Gaussian,omnibus,HC3 Wald F,-0.004,-0.022807430814809713,0.014807430814809713
+diagnostic,null,480,Observed minus Log CPM without offset,omnibus,HC3 Wald F,0.001,-0.002395952133186051,0.004395952133186051
+diagnostic,null,480,Observed minus Latent Gaussian,interaction,HC3 Wald F,0.005,-0.011979760665930254,0.021979760665930256
+diagnostic,null,480,Observed minus Log CPM without offset,interaction,HC3 Wald F,0.0,0.0,0.0
+validation,abundance_only,240,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.036,0.01998417679315256,0.05201582320684743
+validation,abundance_only,240,Observed log CPM plus one,omnibus,Restricted HC2 wild F minus Ordinary F,-0.001,-0.011560022370832007,0.009560022370832005
+validation,abundance_only,240,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,0.013,0.00016628370759763644,0.025833716292402362
+validation,abundance_only,240,Observed log CPM plus one,interaction,Restricted HC2 wild F minus Ordinary F,-0.002,-0.012740017764490966,0.008740017764490966
+validation,abundance_only,480,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.021,0.010159660182108343,0.03184033981789166
+validation,abundance_only,480,Observed log CPM plus one,omnibus,Restricted HC2 wild F minus Ordinary F,0.001,-0.006070144648120387,0.008070144648120387
+validation,abundance_only,480,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,0.003,-0.00859982679101639,0.014599826791016388
+validation,abundance_only,480,Observed log CPM plus one,interaction,Restricted HC2 wild F minus Ordinary F,-0.008,-0.01675572957556367,0.0007557295755636698
+validation,null,240,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.031,0.016320254861976746,0.04567974513802325
+validation,null,240,Observed log CPM plus one,omnibus,Restricted HC2 wild F minus Ordinary F,0.003,-0.008263440446448441,0.01426344044644844
+validation,null,240,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,0.008,-0.00439240530765958,0.02039240530765958
+validation,null,240,Observed log CPM plus one,interaction,Restricted HC2 wild F minus Ordinary F,0.003,-0.007187856399558154,0.013187856399558155
+validation,null,480,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.028,0.01369478330031926,0.042305216699680744
+validation,null,480,Observed log CPM plus one,omnibus,Restricted HC2 wild F minus Ordinary F,-0.006,-0.016369861929477963,0.0043698619294779625
+validation,null,480,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,-0.003,-0.01280313863653509,0.006803138636535091
+validation,null,480,Observed log CPM plus one,interaction,Restricted HC2 wild F minus Ordinary F,-0.006,-0.015599596588120495,0.003599596588120495
+validation,shared_eqtl,240,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.003928571428571429,-0.004964570861866739,0.012821713719009597
+validation,shared_eqtl,240,Observed log CPM plus one,omnibus,Restricted HC2 wild F minus Ordinary F,0.0,-0.005628211765451587,0.005628211765451587
+validation,shared_eqtl,240,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,0.01,-0.024062307732753634,0.04406230773275364
+validation,shared_eqtl,240,Observed log CPM plus one,interaction,Restricted HC2 wild F minus Ordinary F,0.0,-0.0278582269371331,0.0278582269371331
+validation,shared_eqtl,480,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.008214285714285714,-0.0012169058189922376,0.017645477247563664
+validation,shared_eqtl,480,Observed log CPM plus one,omnibus,Restricted HC2 wild F minus Ordinary F,0.007857142857142856,0.0005067219937713689,0.015207563720514343
+validation,shared_eqtl,480,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,0.01,-0.009599999999999996,0.029599999999999994
+validation,shared_eqtl,480,Observed log CPM plus one,interaction,Restricted HC2 wild F minus Ordinary F,0.0,0.0,0.0
+validation,subtype_eqtl,240,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.004818181818181819,-0.0001797396598019873,0.009816103296165625
+validation,subtype_eqtl,240,Observed log CPM plus one,omnibus,Restricted HC2 wild F minus Ordinary F,0.002,-0.0007578237650712788,0.0047578237650712785
+validation,subtype_eqtl,240,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,-0.0014285714285714286,-0.0077148077967624665,0.00485766493961961
+validation,subtype_eqtl,240,Observed log CPM plus one,interaction,Restricted HC2 wild F minus Ordinary F,0.0014285714285714286,-0.003437472533250518,0.006294615390393375
+validation,subtype_eqtl,480,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.0,-0.003939748235816112,0.003939748235816112
+validation,subtype_eqtl,480,Observed log CPM plus one,omnibus,Restricted HC2 wild F minus Ordinary F,-0.002,-0.00592,0.0019199999999999998
+validation,subtype_eqtl,480,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,-0.0025,-0.00911875968728128,0.00411875968728128
+validation,subtype_eqtl,480,Observed log CPM plus one,interaction,Restricted HC2 wild F minus Ordinary F,0.000714285714285714,-0.006796003524115455,0.008224574952686883
+conditional_null,shared_eqtl,240,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.005559523809523809,0.002780495784578739,0.008338551834468879
+conditional_null,shared_eqtl,240,Observed log CPM plus one,omnibus,Restricted HC2 wild F minus Ordinary F,-0.00022619047619047605,-0.0020570463598142893,0.0016046654074333372
+conditional_null,shared_eqtl,240,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,-0.006,-0.017759999999999998,0.0057599999999999995
+conditional_null,shared_eqtl,240,Observed log CPM plus one,interaction,Restricted HC2 wild F minus Ordinary F,-0.016,-0.02632899019451749,-0.00567100980548251
+conditional_null,shared_eqtl,480,Observed log CPM plus one,omnibus,HC3 Wald F minus Ordinary F,0.002607142857142857,-0.00010399966019275161,0.0053182853744784655
+conditional_null,shared_eqtl,480,Observed log CPM plus one,omnibus,Restricted HC2 wild F minus Ordinary F,-0.0015714285714285713,-0.0037414568253051473,0.0005985996824480048
+conditional_null,shared_eqtl,480,Observed log CPM plus one,interaction,HC3 Wald F minus Ordinary F,0.0,-0.008769772454796583,0.008769772454796583
+conditional_null,shared_eqtl,480,Observed log CPM plus one,interaction,Restricted HC2 wild F minus Ordinary F,-0.001,-0.010404328779865142,0.00840432877986514

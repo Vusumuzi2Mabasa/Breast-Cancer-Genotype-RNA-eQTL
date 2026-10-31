@@ -36,22 +36,31 @@ def main():
     assert set(d.method)=={'DIABLO','Combined ridge','RNA ridge','Genotype ridge','Clinical only'}
     assert m.residual_programme_capture.between(0,1+1e-10).all()
     assert s.selection_frequency.between(0,1).all() and (s.replicates==10).all()
-    assert len(list((ROOT/'figures').glob('*.png')))==8
-    doc=Document(ROOT/'report/Genotype_RNA_eQTL_Report.docx')
-    assert doc.core_properties.author=='Vusumuzi Mabasa' and len(doc.inline_shapes)==8
-    assert [len(x.rows) for x in doc.tables]==[4,5,5,9,5,13]
+    assert len(list((ROOT/'figures').glob('*.png')))==13
+    doc=Document(ROOT/'report/Genotype_RNA_eQTL_Calibration_Report.docx')
+    assert doc.core_properties.author=='Vusumuzi Mabasa' and len(doc.inline_shapes)==13
+    assert [len(x.rows) for x in doc.tables]==[4,5,5,9,5,13,5,3]
     assert len(doc.element.xpath('.//m:oMath'))>=18
     text=(ROOT/'README.md').read_text(encoding='utf-8')
     assert 'No real patient material' in text and 'post hoc' in text
     assert '## Results' in text and all(f'### Analysis {i}' in text for i in [1,2,3])
     assert not any(ord(c)<32 and c not in '\t\r\n' for c in text)
+    investigation=ROOT/'investigations/eqtl_error'
+    cal=json.loads((investigation/'results/investigation_audit.json').read_text())
+    assert cal['status']=='passed' and cal['total_new_cohorts']==10400
+    assert cal['seed_banks_disjoint'] and cal['source_locks_verified'] and cal['previous_results_unchanged']
+    for line in (investigation/'checksums.sha256').read_text(encoding='utf-8-sig').splitlines():
+        digest,name=line.split('  ',1);assert sha(investigation/name)==digest,name
+    for name in ['independent_validation','paired_oracle_ablation','gaussian_pvalue_tails','conditional_interaction_null','strong_signal_power']:
+        assert sha(ROOT/f'figures/calibration_{name}.png')==sha(investigation/f'figures/{name}.png'),name
+    assert '4.25%' in text and '10,400' in text and '22/200' in text
     if not a.fresh:
         q=json.loads((ROOT/'results/report_qa.json').read_text())
         assert q['status']=='passed' and sha(ROOT/'README.md')==q['readme_sha256']
-        assert sha(ROOT/'report/Genotype_RNA_eQTL_Report.docx')==q['word_sha256']
+        assert sha(ROOT/'report/Genotype_RNA_eQTL_Calibration_Report.docx')==q['word_sha256']
         for line in (ROOT/'checksums.sha256').read_text().splitlines():
             digest,name=line.split('  ',1);assert sha(ROOT/name)==digest,name
-    result=dict(status='passed',original_numerical_files_preserved=preserved,analyses=['MOFA molecular discovery','DIABLO supervised signatures','cis eQTL association'],original_eqtl_cohorts=1600,fresh_null_cohorts=800,training_test_pairs=80,MOFA_descriptive_fixtures=8,supervised_method_records=400,figures=8,eqtl_calibration='Error excesses retained; further calibration required before confirmatory use.')
+    result=dict(status='passed',original_numerical_files_preserved=preserved,analyses=['MOFA molecular discovery','DIABLO supervised signatures','cis eQTL association'],original_eqtl_cohorts=1600,fresh_null_cohorts=800,additional_calibration_cohorts=10400,training_test_pairs=80,MOFA_descriptive_fixtures=8,supervised_method_records=400,figures=13,eqtl_calibration='Original excesses retained; independent confirmation did not reproduce persistent 11% F error. HC3 oracle excess retained. Wild bootstrap is a sensitivity candidate, not real-data certification.')
     if a.write_result:(ROOT/'results/release_audit.json').write_text(json.dumps(result,indent=2),encoding='utf-8',newline='\n')
     print(json.dumps(result,indent=2))
 

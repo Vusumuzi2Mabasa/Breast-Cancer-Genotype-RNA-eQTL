@@ -1,0 +1,13 @@
+{
+  "reason": "The original validation plan allocated only 100 shared-eQTL power cohorts per sample size. Its interaction-null family is important and imprecise (8/100 for the candidate at N480), so add independent confirmation without altering any test.",
+  "scenario": "shared_eqtl",
+  "sample_sizes": [
+    240,
+    480
+  ],
+  "cohorts_per_cell": 1000,
+  "replicate_offset": 10000,
+  "seed": "1903000000 + 1000000 + N*1000 + 10000 + r",
+  "methods": "Same ordinary F, HC3 Wald F and restricted HC2 wild F with 999 draws; unchanged BH families.",
+  "source_sha256": "5e23698f02762567eb0d4f29bfb8bc89d39a1af880d86628539f87535cc771d9"
+}

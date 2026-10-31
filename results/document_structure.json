@@ -1,14 +1,16 @@
 {
   "author": "Vusumuzi Mabasa",
-  "figures": 8,
-  "tables": 6,
+  "figures": 13,
+  "tables": 8,
   "table_rows": [
     4,
     5,
     5,
     9,
     5,
-    13
+    13,
+    5,
+    3
   ],
-  "editable_equations": 21
+  "editable_equations": 24
 }
