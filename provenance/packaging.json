@@ -1,0 +1,14 @@
+{
+  "source_repository": "https://github.com/Vusumuzi2Mabasa/Breast-Multiomics-Copula-MOFA",
+  "source_commit": "f3a20412de6f1a8d53471111674f4950f6bdbed6",
+  "source_subdirectory": "v3",
+  "numerical_files_preserved": 4176,
+  "changes": "Standalone layout and a complementary interpretation. R paths drop the v3/ prefix; no analytical choices changed. New MOFA diagnostics and DIABLO feature frequencies are descriptive post hoc summaries of existing fitted models.",
+  "untouched_python_models": [
+    "src/simulation.py",
+    "src/eqtl.py",
+    "src/integration.py",
+    "src/run.py",
+    "src/robustness.py"
+  ]
+}

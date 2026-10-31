@@ -1,0 +1,26 @@
+{
+  "title": "Three complementary analyses of simulated breast cancer cases",
+  "simulation_disclosure": "All samples, genotypes, positions, LD, gene identifiers, RNA counts and subtype labels are synthetic.",
+  "analysis_1": {
+    "method": "MOFA+",
+    "question": "What molecular variation is represented by unsupervised factors?",
+    "main_summaries": ["Training-only factor-budget selection and masked reconstruction", "Descriptive score and loading plots"],
+    "post_hoc_diagnostics": ["Projection reconstruction by view", "Capture of the known residual programme subspace", "Genotype-only prediction of unobserved RNA in independent participants"],
+    "diagnostic_scope": "Eight prespecified first-replicate fixtures, one per scenario and sample size; not all 80 models.",
+    "not_assessed": ["Bootstrap factor stability", "Real pathway enrichment", "Independent biological replication"]
+  },
+  "analysis_2": {
+    "method": "DIABLO",
+    "question": "Can a supervised genotype and RNA signature distinguish TNBC from other simulated breast cancer cases?",
+    "main_summaries": ["Independent-test balanced accuracy against combined, RNA, genotype and clinical ridge references", "Feature-selection frequency across ten independent simulation replicates per cell"],
+    "qualification": "Selection frequency is simulation reproducibility, not a bootstrap estimate on the same patients. Prediction does not establish causal regulation."
+  },
+  "analysis_3": {
+    "method": "cis-eQTL mapping",
+    "question": "Are regional genotypes associated with expression, and do associations differ by subtype?",
+    "main_summaries": ["Gene-level omnibus and interaction tests", "Separate BH families", "Detection and negative controls", "Preserved ordinary F and HC3 sensitivity with 800 fresh null cohorts"],
+    "qualification": "Observed error excesses preclude certification for confirmatory eQTL inference without further calibration."
+  },
+  "interpretation": "No MOFA+ versus DIABLO winner is defined. Inherited MOFA predictive records remain available for provenance but are not primary discovery endpoints or a ranking of integration methods.",
+  "provenance": "The simulations and fitted models were completed before this reframing. New summaries are explicitly post hoc and do not change seeds, effect sizes, fit choices or test participants."
+}

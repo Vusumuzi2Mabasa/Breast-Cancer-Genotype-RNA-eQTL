@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "original_numerical_files_preserved": 4176,
+  "analyses": [
+    "MOFA molecular discovery",
+    "DIABLO supervised signatures",
+    "cis eQTL association"
+  ],
+  "original_eqtl_cohorts": 1600,
+  "fresh_null_cohorts": 800,
+  "training_test_pairs": 80,
+  "MOFA_descriptive_fixtures": 8,
+  "supervised_method_records": 400,
+  "figures": 8,
+  "eqtl_calibration": "Error excesses retained; further calibration required before confirmatory use."
+}

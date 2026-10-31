@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "mofa_selection_records": 80,
+  "mofa_diagnostic_fixtures": 8,
+  "DIABLO_fits": 80,
+  "signature_records": 2880,
+  "post_hoc": true,
+  "new_model_fits": 0,
+  "source_data_unchanged": true
+}

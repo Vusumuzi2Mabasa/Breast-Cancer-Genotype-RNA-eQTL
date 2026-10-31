@@ -1,0 +1,160 @@
+GENOTYPE AND RNA CHARACTERISATION OF SIMULATED BREAST CANCER SUBTYPES
+Author: Vusumuzi Mabasa
+Local project: D:/Breast-Cancer-Genotype-RNA-eQTL on TOSHIBA EXT
+Repository: https://github.com/Vusumuzi2Mabasa/Breast-Cancer-Genotype-RNA-eQTL
+
+1. THREE COMPLEMENTARY QUESTIONS
+MOFA+: discover molecular variation through unsupervised factors and loadings.
+DIABLO: assess supervised TNBC versus non-TNBC signatures against simple prediction references.
+cis-eQTL: test local genotype-expression associations and genotype-by-subtype interactions.
+There is no MOFA versus DIABLO winner. MOFA subtype accuracy is not its primary discovery endpoint.
+
+2. SIMULATION AND PROVENANCE
+All participants, RNA counts, germline dosages, positions, LD and gene identifiers are synthetic.
+There are two molecular layers: 24 germline variants in six local regions and 12 RNA genes.
+There are no protein or somatic features and no real breast cancer eQTL discoveries.
+Cases have simulated TNBC/non-TNBC labels; no healthy-control susceptibility GWAS was performed.
+The original study remains at the source repository/commit in provenance/packaging.json.
+Original model, eQTL and robustness records and example data are byte-preserved; their SHA256
+index is provenance/original_numerical_sha256.json. Scientific Python models are unchanged.
+R scripts differ only by removal of the v3/ path prefix for the standalone layout.
+Original locks and source copies document that packaging change.
+
+Original design: 1,600 eQTL cohorts, 80 independently generated training/test pairs,
+training N240/N480 and 360 independent test cases per pair. Scenarios: null, shared eQTL,
+subtype eQTL with abundance shifts, and abundance-only without eQTLs. An explicitly
+documented HC3 sensitivity amendment adds 800 fresh null/abundance-only cohorts.
+No participants, seeds, effects, model grids or test outcomes were changed by reframing.
+Programme diagnostics and feature-selection frequencies are post hoc descriptive summaries
+of already fitted models. They are not new prospectively selected simulation endpoints.
+
+3. GENERATOR AND QC
+Synthetic genotype dosage is 0/1/2 from correlated latent Gaussian binomial thresholds.
+Local correlation is 0.65^distance; allele frequencies vary with idealised ancestry strata.
+This is not empirical African or other reference LD. Age, cell composition, ancestry and
+batch contribute to expression and/or case subtype. Negative-binomial counts have dispersion
+30 and a known whole-assay library; analysis uses log2(CPM+1). Twelve selected genes do not
+stand in for the full transcriptome. Full equations are in README.md and the Word report.
+QC checks dosage values, dimensions, finite RNA, integer counts, libraries and MAF.
+HWE summaries are within ancestry with an approximation only where expected counts >=5.
+No FASTQ processing, actual variant calling, imputation or real sample-swap QC was performed.
+
+4. MOFA DISCOVERY
+Official mofapy2 with Gaussian working genotype/RNA views, training-only ancestry/batch
+preparation and scaling, without subtype labels during representation fitting.
+K2/4/6 is selected by masked training reconstruction. Genuine PCA and jittered PCA starts
+are selected by training ELBO. All 80 fit choices remain preserved.
+New summaries: budget counts and selected masked errors across 80 fits; eight fixed
+first-replicate fixtures for projection reconstruction, residual H-programme subspace
+capture and independent RNA-from-genotype prediction. These are descriptive diagnostics.
+Projection R2 is not official posterior variance decomposition. Residual H is only part
+of total molecular variation. The upper K6 was selected in 76/80 fits; larger budgets were
+not evaluated here. Bootstrap factor stability, real pathway enrichment and biological
+replication were not assessed.
+
+5. DIABLO SIGNATURES
+Official R mixOmics block.splsda uses genotype/RNA plus observed clinical adjustment inputs.
+The clinical block is not another molecular assay. Stratified threefold training-only
+validation selects components 1/2 and keepX4/8 (limited by block size).
+Preparation is repeated inside each fold. Weighted centroid voting yields class labels.
+Compare independent balanced accuracy with combined ridge, RNA ridge, genotype ridge and
+clinical-only ridge using the same test participants and clinical information.
+Do not manufacture AUC or probability calibration for hard DIABLO labels.
+Feature selection frequency is across ten independently simulated cohorts per cell;
+it is not bootstrap stability of the same patients. Response-block features are excluded.
+Original MOFA/PCA prediction records remain in integration_evaluation.csv for provenance;
+supervised_prediction_evaluation.csv contains only DIABLO and prediction references.
+
+6. CIS eQTL INFERENCE
+Per gene, jointly model its four local genotypes and four genotype-by-subtype interactions,
+adjusting for age, cell composition, known ancestry and batch. The omnibus test compares
+the full model to covariates plus subtype. The interaction test retains common genotype
+effects in its null. Use observed design ranks for nested F degrees of freedom.
+Apply BH separately across twelve omnibus tests and twelve interaction tests per cohort.
+No joint FDR guarantee across families is claimed. Evaluate gene-level truth, not whether
+each LD-correlated tag SNP is directly causal. No fine-mapping, colocalisation or mediation.
+The ordinary F reference uses a working linear model on transformed counts. The HC3 Wald
+sensitivity is approximate. Original abundance-only N480 error was 11% for F and 8% for HC3;
+fresh values were 5.5% and 4.5%. HC3 also gave 8.5% and 9% in fresh complete-null N240/N480
+cohorts. Neither reference is certified for confirmatory eQTL inference without further
+calibration. All these limitations remain visible in figures, tables and the report.
+
+7. SOFTWARE AND TOSHIBA
+Confirm the actual Toshiba drive letter, then run in this project:
+Set-Location 'D:\Breast-Cancer-Genotype-RNA-eQTL'
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+Rscript --vanilla -e "library(mixOmics);library(jsonlite);sessionInfo()"
+quarto --version
+$env:OPENBLAS_NUM_THREADS='1'
+$env:OMP_NUM_THREADS='1'
+$env:MKL_NUM_THREADS='1'
+
+The executed local checks reused the existing bundled Python runtime/dependencies.
+The repository itself depends on the pinned requirements, R with mixOmics/jsonlite,
+and Quarto, not on code or data in the old repository. No cluster is necessary.
+
+8. COMPLETE FRESH REPRODUCTION
+Choose a new directory. The wrapper refuses existing targets and never deletes results.
+python src/reproduce.py --output 'D:\Breast_Genotype_RNA_fresh' --workers 2 --rscript 'C:\Program Files\R\R-4.5.1\bin\Rscript.exe' --quarto 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe'
+
+Linux/WSL:
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+python src/reproduce.py --output /mnt/d/Breast_Genotype_RNA_fresh --workers 2
+
+Confirm the mount; a remote HPC machine cannot automatically access Toshiba.
+A fresh scientific audit skips byte comparisons to inherited numerical records and
+human Word QA. New publication requires checking the rendered report and new manifest.
+
+9. RESUMABLE STAGES
+python -m unittest discover -s tests -v
+python src/run.py --stage eqtl --workers 2
+python src/run.py --stage integration --workers 2
+Rscript --vanilla src/diablo.R .
+python src/replay_integration.py
+python src/analysis.py
+Rscript --vanilla src/check_R.R .
+python src/robustness.py
+Rscript --vanilla src/check_HC3.R .
+python src/complementary.py
+python src/figures.py
+python src/manuscript.py
+python src/build_word.py
+python src/audit.py --fresh
+
+Existing records are resumed. The historical computational stage name integration
+does not define a head-to-head scientific objective. Complementary summaries make the
+three questions explicit. All old numerical results remain in their original records.
+
+10. RESULTS
+results/mofa_discovery_tuning.csv: 80 factor choices and masked training losses.
+results/mofa_discovery_examples.csv: eight fixed programme diagnostics.
+results/supervised_prediction_summary.csv: DIABLO and prediction references.
+results/diablo_signature_frequency.csv: cohort-level selection reproducibility.
+results/eqtl_summary.csv: gene detection and realised FDP.
+results/robustness_summary.csv: preserved F and HC3 checks and fresh null cohorts.
+results/example_eqtl.csv: all twelve example genes, including non-significant results.
+data/example/: the prespecified 240-case example, metadata, maps and simulation truth.
+figures/: eight main figures in PNG/SVG.
+report/Genotype_RNA_eQTL_Report.docx and manuscript.qmd: research report and source.
+README.md: shared research manuscript, with interpretation before figures.
+provenance/: source commit, numerical hashes, original locks and original source copies.
+
+11. VALIDATION
+Nine unit tests cover model replay properties, F/BH arithmetic, training preparation,
+official MOFA/projection, rotation-invariant full-programme capture and reconstruction.
+Independent R checks revalidate eQTL P/q values, probability metrics and HC3 calculations
+after relocation. All original numerical records are hash-checked. The original full
+integration replay and eight eQTL replays remain released. No models were refitted for the
+new summaries. Report pages are rendered and visually inspected before delivery.
+The default release audit is read-only, so CI does not alter preserved JSON line endings.
+
+12. PUBLICATION
+After numerical validation, Word visual QA and integrity manifest generation:
+git add .
+git commit -m "Organise simulated breast cancer study as complementary analyses"
+git push origin main
+
+Do not upload work/, environments, credentials, clinical data or private proposals.
+All data remain clearly labelled simulated, including the report, README and example.

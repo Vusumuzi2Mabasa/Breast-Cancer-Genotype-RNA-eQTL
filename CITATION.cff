@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite this simulated study and the original method publications."
+title: "Genotype and RNA Characterisation of Simulated Breast Cancer Subtypes"
+type: software
+authors:
+  - family-names: Mabasa
+    given-names: Vusumuzi
+url: "https://github.com/Vusumuzi2Mabasa/Breast-Cancer-Genotype-RNA-eQTL"
+repository-code: "https://github.com/Vusumuzi2Mabasa/Breast-Cancer-Genotype-RNA-eQTL"
+license: MIT
+abstract: "Three complementary analyses of wholly simulated breast cancer cases: MOFA molecular discovery, DIABLO subtype signatures and cis-eQTL association. No clinical findings or causal validation."
